@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot name="Banana">
+  <link name="link1">
+  <visual>
+    <geometry>
+      <mesh filename="/banana.stl"/>
+    </geometry>
+  </visual>
+  <collision concave="yes">
+    <geometry>
+      <mesh filename="banana.stl"/>
+    </geometry>
+  </collision>
+</link>
+</robot>
