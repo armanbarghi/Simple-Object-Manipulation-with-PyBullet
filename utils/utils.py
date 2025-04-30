@@ -25,7 +25,7 @@ def decompose_obj(directory, obj_name):
 
     print(f"[VHACD] Decomposition complete: {output_path}")
 
-def create_urdf(directory, name, mass, convex=False):
+def create_urdf(directory, name, mass, concave=False):
     obj_path = os.path.join(directory, f"{name}.obj")
     scene = trimesh.load(obj_path, force='scene')
     parts = []
@@ -56,8 +56,8 @@ def create_urdf(directory, name, mass, convex=False):
 
             parts.append((f"link_{idx}", part_filename))
 
-    collision_file = f"{name}_vhacd.obj" if convex else f"{name}.obj"
-    if convex:
+    collision_file = f"{name}_vhacd.obj" if concave else f"{name}.obj"
+    if concave:
         decompose_obj(directory, name)
 
     links_xml = []
@@ -96,7 +96,7 @@ def create_urdf(directory, name, mass, convex=False):
 
     print(f"[URDF] Created with {len(parts)} link(s): {urdf_path}")
 
-def create_obj(obj_name, mass, convex=False):
+def create_obj(obj_name, mass, concave=False):
     base_path = os.path.join("objects", obj_name)
 
     for subdir in os.listdir(base_path):
@@ -118,4 +118,4 @@ def create_obj(obj_name, mass, convex=False):
         scene.export(obj_path)
         print(f"[Export] Converted to OBJ: {obj_path}")
 
-        create_urdf(folder_path, subdir, mass, convex)
+        create_urdf(folder_path, subdir, mass, concave)
