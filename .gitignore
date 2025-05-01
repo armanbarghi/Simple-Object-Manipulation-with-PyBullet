@@ -169,3 +169,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Blender file
+objects/*/*/*.blend
+objects/*/*/*.obj
+objects/*/*/*.mtl
+objects/*/*/*.png
+objects/*/*/*.urdf
+objects/*/*/*.txt
+objects/*/*/assets/
