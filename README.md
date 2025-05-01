@@ -23,3 +23,16 @@ This script pipeline prepares URDF models for PyBullet simulation using `.glb` f
    PyBullet assumes convex meshes by default. To improve collision accuracy:
    - We run [VHACD](https://github.com/kmammou/v-hacd) to generate convex decompositions.
    - The decomposed `.obj` file is used for collision geometry in all URDF parts.
+
+## 🎯 2D Bounding Box Projection in PyBullet
+
+This module computes 2D bounding boxes of 3D objects in a PyBullet simulation using camera projection.
+
+### 🔍 How It Works
+
+- **Mesh Sampling**: A set of surface points is randomly sampled from the object's `.obj` mesh file.
+- **World Transformation**: These points are transformed into world coordinates using the object's position and orientation from PyBullet.
+- **Camera Projection**: The transformed points are projected into 2D image coordinates using the camera's view and projection matrices.
+- **Bounding Box Generation**: A 2D bounding box is computed by taking the min/max of the projected pixel coordinates.
+
+This approach enables automatic annotation of 3D objects in 2D camera views, ideal for generating training data for object detection tasks.
